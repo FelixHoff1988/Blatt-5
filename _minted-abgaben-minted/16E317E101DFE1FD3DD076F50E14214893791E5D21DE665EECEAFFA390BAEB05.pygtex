@@ -1,10 +1,11 @@
 \begin{Verbatim}[commandchars=\\\{\}]
 \PYG{c+cm}{\PYGZob{}\PYGZhy{}\PYGZsh{} OPTIONS\PYGZus{}GHC \PYGZhy{}Wno\PYGZhy{}unrecognised\PYGZhy{}pragmas \PYGZsh{}\PYGZhy{}\PYGZcb{}}
 \PYG{c+cm}{\PYGZob{}\PYGZhy{}\PYGZsh{} HLINT ignore \PYGZdq{}Use guards\PYGZdq{} \PYGZsh{}\PYGZhy{}\PYGZcb{}}
+\PYG{c+cm}{\PYGZob{}\PYGZhy{}\PYGZsh{} LANGUAGE ConstrainedClassMethods \PYGZsh{}\PYGZhy{}\PYGZcb{}}
 \PYG{c+cm}{\PYGZob{}\PYGZhy{}}
 \PYG{c+cm}{Aufgabe 5\PYGZus{}3 a}
 \PYG{c+cm}{\PYGZhy{}\PYGZcb{}}
-
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Es werden die Datentypen Point und Vektor erstellt.}
 \PYG{k+kr}{data} \PYG{k+kt}{Point} \PYG{o+ow}{=} \PYG{k+kt}{MkPoint} \PYG{p}{\PYGZob{}}
     \PYG{n}{px} \PYG{o+ow}{::} \PYG{k+kt}{Float}\PYG{p}{,}
     \PYG{n}{py} \PYG{o+ow}{::} \PYG{k+kt}{Float}
@@ -14,10 +15,12 @@
     \PYG{n}{vx} \PYG{o+ow}{::} \PYG{k+kt}{Float}\PYG{p}{,}
     \PYG{n}{vy} \PYG{o+ow}{::} \PYG{k+kt}{Float}
 \PYG{p}{\PYGZcb{}}\PYG{k+kr}{deriving} \PYG{p}{(}\PYG{k+kt}{Eq}\PYG{p}{,} \PYG{k+kt}{Ord}\PYG{p}{,} \PYG{k+kt}{Show}\PYG{p}{)}
-
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Die Funktion addiert einen Vektor mit einem Punkit und gibt einen neuen Punkt aus}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Beispiel translate x1 x2 ergibt (3,3)}
 \PYG{n+nf}{translate} \PYG{o+ow}{::} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Vector} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point}
 \PYG{n+nf}{translate} \PYG{p}{(}\PYG{k+kt}{MkPoint} \PYG{n}{p1} \PYG{n}{p2}\PYG{p}{)} \PYG{p}{(}\PYG{k+kt}{MkVector} \PYG{n}{v1} \PYG{n}{v2}\PYG{p}{)} \PYG{o+ow}{=} \PYG{k+kt}{MkPoint} \PYG{p}{(}\PYG{n}{p1}\PYG{o}{+}\PYG{n}{v1}\PYG{p}{)} \PYG{p}{(}\PYG{n}{p2}\PYG{o}{+}\PYG{n}{v2}\PYG{p}{)}
-
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Die Funktion multipliziert einen Punkt mit einem Float und skaliert den Punkt dementsprechend.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Beispiel scale 2 x1 ergibt (4,4) da 2+2 gleich 4 ist}
 \PYG{n+nf}{scale} \PYG{o+ow}{::} \PYG{k+kt}{Float} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point}
 \PYG{n+nf}{scale} \PYG{n}{factor} \PYG{p}{(}\PYG{k+kt}{MkPoint} \PYG{n}{p1} \PYG{n}{p2}\PYG{p}{)} \PYG{o+ow}{=} \PYG{k+kt}{MkPoint} \PYG{p}{(}\PYG{n}{factor} \PYG{o}{*} \PYG{n}{p1}\PYG{p}{)} \PYG{p}{(}\PYG{n}{factor} \PYG{o}{*} \PYG{n}{p2}\PYG{p}{)}
 
@@ -26,9 +29,9 @@
 \PYG{c+cm}{\PYGZhy{}\PYGZcb{}}
 
 \PYG{k+kr}{class} \PYG{k+kt}{Polygon} \PYG{n}{p} \PYG{k+kr}{where}
-    \PYG{n}{area}            \PYG{o+ow}{::} \PYG{k+kt}{Polygon} \PYG{n}{p} \PYG{o+ow}{=\PYGZgt{}} \PYG{n}{p} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float}
-    \PYG{n}{translate\PYGZus{}poly}  \PYG{o+ow}{::} \PYG{k+kt}{Polygon} \PYG{n}{p} \PYG{o+ow}{=\PYGZgt{}} \PYG{n}{p} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Vector} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{p}
-    \PYG{n}{scale\PYGZus{}poly}      \PYG{o+ow}{::} \PYG{k+kt}{Polygon} \PYG{n}{p} \PYG{o+ow}{=\PYGZgt{}} \PYG{n}{p} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{p}
+    \PYG{n}{area}           \PYG{o+ow}{::} \PYG{k+kt}{Polygon} \PYG{n}{p} \PYG{o+ow}{=\PYGZgt{}} \PYG{n}{p} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float}
+    \PYG{n}{translate\PYGZus{}poly} \PYG{o+ow}{::} \PYG{k+kt}{Polygon} \PYG{n}{p} \PYG{o+ow}{=\PYGZgt{}} \PYG{n}{p} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Vector} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{p}
+    \PYG{n}{scale\PYGZus{}poly}     \PYG{o+ow}{::} \PYG{k+kt}{Polygon} \PYG{n}{p} \PYG{o+ow}{=\PYGZgt{}} \PYG{n}{p} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{p}
 
 \PYG{k+kr}{data} \PYG{k+kt}{Triangle} \PYG{o+ow}{=} \PYG{k+kt}{MkTriangle} \PYG{p}{\PYGZob{}}
     \PYG{n}{p1} \PYG{o+ow}{::} \PYG{k+kt}{Point}\PYG{p}{,}
@@ -53,6 +56,7 @@
 
 \PYG{c+cm}{\PYGZob{}\PYGZhy{}}
 \PYG{c+cm}{Die Funktion berechnet die Distanz zwischen zwei Punkten und gibt die Länge zurück.}
+\PYG{c+cm}{Beispiel lengthBetweenTwoPoints x1 x2 ergibt 6.0}
 \PYG{c+cm}{\PYGZhy{}\PYGZcb{}}
 \PYG{n+nf}{lengthBetweenTwoPoints} \PYG{o+ow}{::} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float}
 \PYG{n+nf}{lengthBetweenTwoPoints} \PYG{p}{(}\PYG{k+kt}{MkPoint} \PYG{n}{x1} \PYG{n}{y1}\PYG{p}{)} \PYG{p}{(}\PYG{k+kt}{MkPoint} \PYG{n}{x2} \PYG{n}{y2}\PYG{p}{)} \PYG{o+ow}{=} 
@@ -60,6 +64,7 @@
 
 \PYG{c+cm}{\PYGZob{}\PYGZhy{}}
 \PYG{c+cm}{Die Funktion gibt die längste Seite eines allgemeinen Dreiecks zurück.}
+\PYG{c+cm}{Beispiel findGround x1 x2 x3 ergibt 6.0.}
 \PYG{c+cm}{\PYGZhy{}\PYGZcb{}}
 \PYG{n+nf}{findGround} \PYG{o+ow}{::} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float}
 \PYG{n+nf}{findGround} \PYG{n}{p1} \PYG{n}{p2} \PYG{n}{p3} 
@@ -69,12 +74,14 @@
 
 \PYG{c+cm}{\PYGZob{}\PYGZhy{}}
 \PYG{c+cm}{Die Funktion berechnet die Summe der Kantenlängen und halbiert diese.}
+\PYG{c+cm}{Beispiel calculateHalfOfSumEdge x1 x2 x3 ergibt 7.4966145.}
 \PYG{c+cm}{\PYGZhy{}\PYGZcb{}}
 \PYG{n+nf}{calculateHalfOfSumEdge} \PYG{o+ow}{::} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float}
 \PYG{n+nf}{calculateHalfOfSumEdge} \PYG{n}{p1} \PYG{n}{p2} \PYG{n}{p3} \PYG{o+ow}{=} \PYG{l+m+mf}{0.5} \PYG{o}{*} \PYG{p}{(}\PYG{n}{lengthBetweenTwoPoints} \PYG{n}{p1} \PYG{n}{p2} \PYG{o}{+} \PYG{n}{lengthBetweenTwoPoints} \PYG{n}{p1} \PYG{n}{p3} \PYG{o}{+}\PYG{n}{lengthBetweenTwoPoints} \PYG{n}{p2} \PYG{n}{p3}\PYG{p}{)}
 
 \PYG{c+cm}{\PYGZob{}\PYGZhy{}}
 \PYG{c+cm}{Die Funktion berechnet die Höhe eine allgemeinen Dreiecks aus gehend von der Längsten Seite.}
+\PYG{c+cm}{Beispiel calculateHeight x1 x2 x3 ergibt 2.9999995}
 \PYG{c+cm}{\PYGZhy{}\PYGZcb{}}
 \PYG{n+nf}{calculateHeight} \PYG{o+ow}{::} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float}
 \PYG{n+nf}{calculateHeight} \PYG{n}{p1} \PYG{n}{p2} \PYG{n}{p3} \PYG{o+ow}{=} \PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{/}\PYG{n}{findGround} \PYG{n}{p1} \PYG{n}{p2} \PYG{n}{p3}\PYG{p}{)}\PYG{o}{*}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{calculateHalfOfSumEdge} \PYG{n}{p1} \PYG{n}{p2} \PYG{n}{p3}\PYG{o}{*}\PYG{p}{(}\PYG{n}{calculateHalfOfSumEdge} \PYG{n}{p1} \PYG{n}{p2} \PYG{n}{p3}\PYG{o}{\PYGZhy{}}\PYG{n}{lengthBetweenTwoPoints} \PYG{n}{p1} \PYG{n}{p2}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{calculateHalfOfSumEdge} \PYG{n}{p1} \PYG{n}{p2} \PYG{n}{p3}\PYG{o}{\PYGZhy{}}\PYG{n}{lengthBetweenTwoPoints} \PYG{n}{p1} \PYG{n}{p3}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{calculateHalfOfSumEdge} \PYG{n}{p1} \PYG{n}{p2} \PYG{n}{p3}\PYG{o}{\PYGZhy{}}\PYG{n}{lengthBetweenTwoPoints} \PYG{n}{p2} \PYG{n}{p3}\PYG{p}{))}
@@ -95,6 +102,7 @@
 \PYG{c+cm}{Die Funktion gibt die beiden Punkte eines Dreiecks zurück, }
 \PYG{c+cm}{die am weitestens auseinander liegen. }
 \PYG{c+cm}{(analog zu findGround nur mit Punkten)}
+\PYG{c+cm}{Beispiel findLongestDistance x1 x2 x3 gibt aus MkLine \PYGZob{}l1 = MkPoint \PYGZob{}px = 2.0, py = 2.0\PYGZcb{}, l2 = MkPoint \PYGZob{}px = 8.0, py = 2.0\PYGZcb{}\PYGZcb{}. Da die Linie zwischen den beiden entferntesten Punkten ausgegeben werden soll}
 \PYG{c+cm}{\PYGZhy{}\PYGZcb{}}
 \PYG{n+nf}{findLongestDistance} \PYG{o+ow}{::} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Line}
 \PYG{n+nf}{findLongestDistance} \PYG{n}{p1} \PYG{n}{p2} \PYG{n}{p3} 
@@ -105,12 +113,14 @@
 \PYG{c+cm}{\PYGZob{}\PYGZhy{}}
 \PYG{c+cm}{Die Funktion gibt eine beliebige der beiden Diagonalen in einem}
 \PYG{c+cm}{allgemeinen Viereck zurück.}
+\PYG{c+cm}{Beispiel findDiagonal q ergibt MkLine \PYGZob{}l1 = MkPoint \PYGZob{}px = 2.0, py = 2.0\PYGZcb{}, l2 = MkPoint \PYGZob{}px = 8.0, py = 2.0\PYGZcb{}\PYGZcb{}, da sie eine Diagonale des Quadrates als Linie zurückgeben soll.}
 \PYG{c+cm}{\PYGZhy{}\PYGZcb{}}
 \PYG{n+nf}{findDiagonal} \PYG{o+ow}{::} \PYG{k+kt}{Quad} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Line}
 \PYG{n+nf}{findDiagonal} \PYG{n}{quad} \PYG{o+ow}{=} \PYG{n}{findLongestDistance} \PYG{p}{(}\PYG{n}{q1} \PYG{n}{quad}\PYG{p}{)} \PYG{p}{(}\PYG{n}{q2} \PYG{n}{quad}\PYG{p}{)} \PYG{p}{(}\PYG{n}{q3} \PYG{n}{quad}\PYG{p}{)}
 
 \PYG{c+cm}{\PYGZob{}\PYGZhy{}}
 \PYG{c+cm}{Die Funktion gibt die andere Diagonale zurück.}
+\PYG{c+cm}{Beispiel findOtherPoints q gibt MkLine \PYGZob{}l1 = MkPoint \PYGZob{}px = 7.0, py = 5.0\PYGZcb{}, l2 = MkPoint \PYGZob{}px = 3.0, py = 1.0\PYGZcb{}\PYGZcb{} aus. Da diese Linie die zweite Diagonale des Quadrates q ist. und die erste schon in der Funktion findDiagonal ausgegeben wird.}
 \PYG{c+cm}{\PYGZhy{}\PYGZcb{}}
 \PYG{n+nf}{findOtherPoints} \PYG{o+ow}{::} \PYG{k+kt}{Quad} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Line}
 \PYG{n+nf}{findOtherPoints} \PYG{n}{quad} 
@@ -120,18 +130,27 @@
 
 \PYG{c+cm}{\PYGZob{}\PYGZhy{}}
 \PYG{c+cm}{Die Funktion gibt den 1. Punkt einer Linie zurück.}
+\PYG{c+cm}{Beispiel breakDownLineToFirst line1 gibt MkPoint \PYGZob{}px = 2.0, py = 2.0\PYGZcb{} also x1 aus.}
 \PYG{c+cm}{\PYGZhy{}\PYGZcb{}}
 \PYG{n+nf}{breakDownLineToFirst} \PYG{o+ow}{::} \PYG{k+kt}{Line} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point}
 \PYG{n+nf}{breakDownLineToFirst} \PYG{n}{line} \PYG{o+ow}{=} \PYG{n}{l1} \PYG{n}{line}
 
 \PYG{c+cm}{\PYGZob{}\PYGZhy{}}
 \PYG{c+cm}{Die Funktion gibt den 2. Punkt einer Linie zurück.}
+\PYG{c+cm}{Beispiel breakDownLineToSecond line1 gibt MkPoint \PYGZob{}px = 8.0, py = 2.0\PYGZcb{} also x2 aus.}
 \PYG{c+cm}{\PYGZhy{}\PYGZcb{}}
 \PYG{n+nf}{breakDownLineToSecond} \PYG{o+ow}{::} \PYG{k+kt}{Line} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Point}
 \PYG{n+nf}{breakDownLineToSecond} \PYG{n}{line} \PYG{o+ow}{=} \PYG{n}{l2} \PYG{n}{line}
 
 \PYG{c+cm}{\PYGZob{}\PYGZhy{}}
-\PYG{c+cm}{Wilde Implementierungen der Aufgabenstellungen.}
+\PYG{c+cm}{Die Funktionen area, translate\PYGZus{}poly und scale\PYGZus{}poly wurden implementiert.}
+\PYG{c+cm}{Implementierungen der Aufgabenstellungen.}
+\PYG{c+cm}{Beispiele area t1 gibt ca. 9 aus}
+\PYG{c+cm}{          translate\PYGZus{}poly t1 v1 gibt MkTriangle \PYGZob{}p1 = MkPoint \PYGZob{}px = 3.0, py = 3.0\PYGZcb{}, p2 = MkPoint \PYGZob{}px = 9.0, py = 3.0\PYGZcb{}, p3 = MkPoint \PYGZob{}px = 8.0, py = 6.0\PYGZcb{}\PYGZcb{} als neues Dreieck aus.}
+\PYG{c+cm}{          scale\PYGZus{}poly t1 2 gibt MkTriangle \PYGZob{}p1 = MkPoint \PYGZob{}px = 4.0, py = 4.0\PYGZcb{}, p2 = MkPoint \PYGZob{}px = 16.0, py = 4.0\PYGZcb{}, p3 = MkPoint \PYGZob{}px = 14.0, py = 10.0\PYGZcb{}\PYGZcb{} aus. Die Größe des Dreieck wurde verdoppelt}
+\PYG{c+cm}{          area q ist ca. 12}
+\PYG{c+cm}{          translate\PYGZus{}poly q v1 gibt MkQuad \PYGZob{}q1 = MkPoint \PYGZob{}px = 3.0, py = 3.0\PYGZcb{}, q2 = MkPoint \PYGZob{}px = 9.0, py = 3.0\PYGZcb{}, q3 = MkPoint \PYGZob{}px = 8.0, py = 6.0\PYGZcb{}, q4 = MkPoint \PYGZob{}px = 8.0, py = 6.0\PYGZcb{}\PYGZcb{} als neues Quadrat aus.}
+\PYG{c+cm}{          scale\PYGZus{}poly q 2 gibt MkQuad \PYGZob{}q1 = MkPoint \PYGZob{}px = 4.0, py = 4.0\PYGZcb{}, q2 = MkPoint \PYGZob{}px = 16.0, py = 4.0\PYGZcb{}, q3 = MkPoint \PYGZob{}px = 14.0, py = 10.0\PYGZcb{}, q4 = MkPoint \PYGZob{}px = 6.0, py = 2.0\PYGZcb{}\PYGZcb{} aus. Die größe des Quadrats wurde verdoppelt.}
 \PYG{c+cm}{\PYGZhy{}\PYGZcb{}}
 \PYG{k+kr}{instance} \PYG{k+kt}{Polygon} \PYG{k+kt}{Triangle} \PYG{k+kr}{where}
     \PYG{n}{area} \PYG{p}{(}\PYG{k+kt}{MkTriangle} \PYG{n}{p1} \PYG{n}{p2} \PYG{n}{p3}\PYG{p}{)} \PYG{o+ow}{=} \PYG{l+m+mf}{0.5}\PYG{o}{*} \PYG{n}{findGround} \PYG{n}{p1} \PYG{n}{p2} \PYG{n}{p3} \PYG{o}{*} \PYG{n}{calculateHeight} \PYG{n}{p1} \PYG{n}{p2} \PYG{n}{p3}

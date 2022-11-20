@@ -1,26 +1,32 @@
 \begin{Verbatim}[commandchars=\\\{\}]
-
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Erstellt wird der Datentyp Rank der aus den Zahlen von 7 bis Ass eines Kartenspiels besteht.}
 \PYG{k+kr}{data} \PYG{k+kt}{Rank} \PYG{o+ow}{=} \PYG{k+kt}{Seven} \PYG{o}{|} \PYG{k+kt}{Eight} \PYG{o}{|} \PYG{k+kt}{Nine} \PYG{o}{|} \PYG{k+kt}{Ten} \PYG{o}{|} \PYG{k+kt}{Jack} \PYG{o}{|} \PYG{k+kt}{Queen} \PYG{o}{|} \PYG{k+kt}{King} \PYG{o}{|} \PYG{k+kt}{Ace} \PYG{k+kr}{deriving} \PYG{p}{(}\PYG{k+kt}{Show}\PYG{p}{,} \PYG{k+kt}{Eq}\PYG{p}{,} \PYG{k+kt}{Ord}\PYG{p}{)}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Erstellt wird der Datentyp Suit der aus den Farben/Typen eines Kartenspiels besteht. Also Herz,Karo,Piek,Kreuz.}
 \PYG{k+kr}{data} \PYG{k+kt}{Suit} \PYG{o+ow}{=} \PYG{k+kt}{Diamond} \PYG{o}{|} \PYG{k+kt}{Heart} \PYG{o}{|} \PYG{k+kt}{Spade} \PYG{o}{|} \PYG{k+kt}{Club} \PYG{k+kr}{deriving} \PYG{p}{(}\PYG{k+kt}{Show}\PYG{p}{,} \PYG{k+kt}{Eq}\PYG{p}{,} \PYG{k+kt}{Ord}\PYG{p}{)}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Erstellt wird der Datentyp Card der jeweils aus einer Zahl und einer Farbe/Typ besteht.}
 \PYG{k+kr}{data} \PYG{k+kt}{Card} \PYG{o+ow}{=} \PYG{k+kt}{MkCard} \PYG{p}{\PYGZob{}}
     \PYG{n}{rank} \PYG{o+ow}{::} \PYG{k+kt}{Rank}\PYG{p}{,}
     \PYG{n}{suit} \PYG{o+ow}{::} \PYG{k+kt}{Suit}
     \PYG{p}{\PYGZcb{}} 
     \PYG{k+kr}{deriving} \PYG{p}{(}\PYG{k+kt}{Show}\PYG{p}{,} \PYG{k+kt}{Eq}\PYG{p}{)}
-
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Card wird als Instanz der Klasse Ord erstellt. Nun können 2 Karten verglichen werden welche einen höheren Wert hat. Der Wert Rank entscheidet welche Karte größer ist, bei zwei Karten gleichen Wertes endscheidet die Farbe/Typ welche Karte größer ist. Bei gleichem Wert und gleicher Farbe sind sie gleich groß\PYGZhy{}}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Beispiel card1 \PYGZlt{}= card2 ergibt False da King größer als die 9 ist}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Beispielt card3 \PYGZlt{}= card2 ergibt True da die 7 kleiner als die 9 ist.}
 \PYG{k+kr}{instance} \PYG{k+kt}{Ord} \PYG{k+kt}{Card} \PYG{k+kr}{where}
-    \PYG{p}{(}\PYG{o}{\PYGZlt{}=}\PYG{p}{)} \PYG{o+ow}{::} \PYG{k+kt}{Card} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Card} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Bool}
     \PYG{p}{(}\PYG{k+kt}{MkCard} \PYG{n}{rank1} \PYG{n}{suit1}\PYG{p}{)} \PYG{o}{\PYGZlt{}=} \PYG{p}{(}\PYG{k+kt}{MkCard} \PYG{n}{rank2} \PYG{n}{suit2}\PYG{p}{)} \PYG{o+ow}{=} \PYG{k+kr}{if} \PYG{n}{rank1} \PYG{o}{==} \PYG{n}{rank2} \PYG{k+kr}{then} \PYG{n}{suit1} \PYG{o}{\PYGZlt{}=} \PYG{n}{suit2} \PYG{k+kr}{else} \PYG{n}{rank1} \PYG{o}{\PYGZlt{}=} \PYG{n}{rank2}
 
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Es wird der Datentyp Hand implementiert, eine Hand besteht aus 3 Karten.}
 \PYG{k+kr}{data} \PYG{k+kt}{Hand} \PYG{o+ow}{=} \PYG{k+kt}{MkHand} \PYG{k+kt}{Card} \PYG{k+kt}{Card} \PYG{k+kt}{Card}
-
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Die Funktion Value nimm eine Hand und gibt ihr einen Wert von 0 bis 3. Falls Die Farben/Typ der 3 Karten gleich ist erhält sie den Value Wert 3. Falls der Rank der drei Karten gleich ist, sie also ein Drilling sind erhält die Hand den Value Wert 2. Falls zwei von den drei Karten denselben Rank haben also ein Paar vorhanden ist, erhält sie den Value Wert 1. Falls nichts von dem oben genannten der Fall ist erhält sie den Value Wert 0.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Beispiel value myHand ergibt 0, da Die Farben der drei Karten nicht gleich sind und weder ein Drilling noch ein Paar vorhanden ist.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Beispiel value myHand1 ergibt 3, da alle 3 Farben der drei Karten gleich sind}
 \PYG{n+nf}{value} \PYG{o+ow}{::} \PYG{k+kt}{Hand} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Integer}
 \PYG{n+nf}{value} \PYG{p}{(}\PYG{k+kt}{MkHand} \PYG{p}{(}\PYG{k+kt}{MkCard} \PYG{n}{rank1} \PYG{n}{suit1}\PYG{p}{)} \PYG{p}{(}\PYG{k+kt}{MkCard} \PYG{n}{rank2} \PYG{n}{suit2}\PYG{p}{)} \PYG{p}{(}\PYG{k+kt}{MkCard} \PYG{n}{rank3} \PYG{n}{suit3}\PYG{p}{))} 
     \PYG{o}{|} \PYG{n}{suit1} \PYG{o}{==} \PYG{n}{suit2} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{suit1} \PYG{o}{==} \PYG{n}{suit3} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{suit2} \PYG{o}{==} \PYG{n}{suit3} \PYG{o+ow}{=} \PYG{l+m+mi}{3}
     \PYG{o}{|} \PYG{n}{rank1} \PYG{o}{==} \PYG{n}{rank2} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{rank1} \PYG{o}{==} \PYG{n}{rank3} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{rank2} \PYG{o}{==} \PYG{n}{rank3} \PYG{o+ow}{=} \PYG{l+m+mi}{2}
     \PYG{o}{|} \PYG{n}{rank1} \PYG{o}{==} \PYG{n}{rank2} \PYG{o}{||} \PYG{n}{rank1} \PYG{o}{==} \PYG{n}{rank3} \PYG{o}{||} \PYG{n}{rank2} \PYG{o}{==} \PYG{n}{rank3} \PYG{o+ow}{=} \PYG{l+m+mi}{1}
     \PYG{o}{|} \PYG{n}{otherwise} \PYG{o+ow}{=} \PYG{l+m+mi}{0}
-
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Erstellt wird eine Hand die aus drei Karten besteht}
 \PYG{n+nf}{myHand} \PYG{o+ow}{::} \PYG{k+kt}{Hand}
 \PYG{n+nf}{myHand} \PYG{o+ow}{=} \PYG{k+kt}{MkHand} \PYG{n}{card1} \PYG{n}{card2} \PYG{n}{card3}
 
@@ -32,4 +38,16 @@
 
 \PYG{n+nf}{card3} \PYG{o+ow}{::} \PYG{k+kt}{Card}
 \PYG{n+nf}{card3} \PYG{o+ow}{=} \PYG{k+kt}{MkCard} \PYG{k+kt}{Seven} \PYG{k+kt}{Heart}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Erstellt wird eine Hand die aus drei Karten besteht}
+\PYG{n+nf}{myHand1} \PYG{o+ow}{::} \PYG{k+kt}{Hand}
+\PYG{n+nf}{myHand1} \PYG{o+ow}{=} \PYG{k+kt}{MkHand} \PYG{n}{aceclub} \PYG{n}{kingclub} \PYG{n}{queenclub}
+
+\PYG{n+nf}{aceclub} \PYG{o+ow}{::} \PYG{k+kt}{Card}
+\PYG{n+nf}{aceclub} \PYG{o+ow}{=} \PYG{k+kt}{MkCard} \PYG{k+kt}{Ace} \PYG{k+kt}{Club}
+
+\PYG{n+nf}{kingclub} \PYG{o+ow}{::} \PYG{k+kt}{Card}
+\PYG{n+nf}{kingclub} \PYG{o+ow}{=} \PYG{k+kt}{MkCard} \PYG{k+kt}{King} \PYG{k+kt}{Club}
+
+\PYG{n+nf}{queenclub} \PYG{o+ow}{::} \PYG{k+kt}{Card}
+\PYG{n+nf}{queenclub} \PYG{o+ow}{=} \PYG{k+kt}{MkCard} \PYG{k+kt}{Queen} \PYG{k+kt}{Club}
 \end{Verbatim}

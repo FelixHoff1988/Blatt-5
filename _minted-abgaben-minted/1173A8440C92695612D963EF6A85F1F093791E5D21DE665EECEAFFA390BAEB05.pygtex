@@ -1,0 +1,92 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{\PYGZob{}\PYGZhy{}\PYGZsh{} OPTIONS\PYGZus{}GHC \PYGZhy{}Wno\PYGZhy{}unrecognised\PYGZhy{}pragmas \PYGZsh{}\PYGZhy{}\PYGZcb{}}
+\PYG{c+cm}{\PYGZob{}\PYGZhy{}\PYGZsh{} HLINT ignore \PYGZdq{}Use newtype instead of data\PYGZdq{} \PYGZsh{}\PYGZhy{}\PYGZcb{}}
+\PYG{c+cm}{\PYGZob{}\PYGZhy{}\PYGZsh{} HLINT ignore \PYGZdq{}Eta reduce\PYGZdq{} \PYGZsh{}\PYGZhy{}\PYGZcb{}}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Erstellt wird der Datentyp Currency der aus  coins (Integer), cents(Integer) und currency (String) besteht.}
+\PYG{k+kr}{data} \PYG{k+kt}{Currency} \PYG{o+ow}{=} \PYG{k+kt}{MkCurrency} \PYG{p}{\PYGZob{}}
+    \PYG{n}{coins} \PYG{o+ow}{::} \PYG{k+kt}{Integer}\PYG{p}{,}
+    \PYG{n}{cents} \PYG{o+ow}{::} \PYG{k+kt}{Integer}\PYG{p}{,}
+    \PYG{n}{currency} \PYG{o+ow}{::} \PYG{k+kt}{String}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Funktion nimmt 3 Elemente entgegen und gibt coins aus.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Beispiel getCoins myEuro gibt 12 aus da er nur die ganzen Euros ausgibt}
+\PYG{n+nf}{getCoins} \PYG{o+ow}{::} \PYG{k+kt}{Currency} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Integer}
+\PYG{n+nf}{getCoins} \PYG{p}{(}\PYG{k+kt}{MkCurrency} \PYG{n}{coins} \PYG{n}{cents} \PYG{n}{currency}\PYG{p}{)} \PYG{o+ow}{=} \PYG{n}{coins}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Funktion nimmt 3 Elemente entgegen und gibt cents aus.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Beispiel getCoins myEuro gibt 03 aus da er nur die Cents ausgibt}
+\PYG{n+nf}{getCents} \PYG{o+ow}{::} \PYG{k+kt}{Currency} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Integer}
+\PYG{n+nf}{getCents} \PYG{p}{(}\PYG{k+kt}{MkCurrency} \PYG{n}{coins} \PYG{n}{cents} \PYG{n}{currency}\PYG{p}{)} \PYG{o+ow}{=} \PYG{n}{cents}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Funktion nimmt 3 Elemente entgegen und gibt currency aus.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Beispiel getCoins myEuro gibt Euro aus da er die aktuelle Währung aisgibt.}
+\PYG{n+nf}{getCurrency} \PYG{o+ow}{::} \PYG{k+kt}{Currency} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{String}
+\PYG{n+nf}{getCurrency} \PYG{p}{(}\PYG{k+kt}{MkCurrency} \PYG{n}{coins} \PYG{n}{cents} \PYG{n}{currency}\PYG{p}{)} \PYG{o+ow}{=} \PYG{n}{currency}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Festlegung für die Anzeige der Geldbeträge mit einem Komma in Euro und Dollar (bzw. Yen wenn keiner dieser )}
+\PYG{k+kr}{instance} \PYG{k+kt}{Show} \PYG{k+kt}{Currency} \PYG{k+kr}{where}
+    \PYG{n}{show}\PYG{p}{(}\PYG{k+kt}{MkCurrency} \PYG{n}{coins} \PYG{n}{cents} \PYG{n}{currency}\PYG{p}{)} \PYG{o+ow}{=} 
+        \PYG{k+kr}{if} \PYG{n}{currency} \PYG{o}{==} \PYG{l+s}{\PYGZdq{}Euro\PYGZdq{}} \PYG{o}{||} \PYG{n}{currency} \PYG{o}{==} \PYG{l+s}{\PYGZdq{}Dollar\PYGZdq{}} 
+        \PYG{k+kr}{then} \PYG{n}{show} \PYG{n}{coins} \PYG{o}{++} \PYG{l+s}{\PYGZdq{},\PYGZdq{}} \PYG{o}{++} \PYG{n}{show} \PYG{n}{cents} \PYG{o}{++} \PYG{l+s}{\PYGZdq{} \PYGZdq{}} \PYG{o}{++} \PYG{n}{currency}
+        \PYG{k+kr}{else} \PYG{n}{show} \PYG{n}{coins} \PYG{o}{++} \PYG{l+s}{\PYGZdq{} \PYGZdq{}} \PYG{o}{++} \PYG{n}{currency}
+
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Die Funktionen erstellen Beispiele für jeweils Euro, Dollar und Yen aus dem Datentyp Currency }
+\PYG{n+nf}{myEuro} \PYG{o+ow}{::} \PYG{k+kt}{Currency}
+\PYG{n+nf}{myEuro} \PYG{o+ow}{=} \PYG{k+kt}{MkCurrency} \PYG{l+m+mi}{12} \PYG{l+m+mi}{03} \PYG{l+s}{\PYGZdq{}Euro\PYGZdq{}}
+
+\PYG{n+nf}{myDollar} \PYG{o+ow}{::} \PYG{k+kt}{Currency}
+\PYG{n+nf}{myDollar} \PYG{o+ow}{=} \PYG{k+kt}{MkCurrency} \PYG{l+m+mi}{14} \PYG{l+m+mi}{60} \PYG{l+s}{\PYGZdq{}Dollar\PYGZdq{}}
+
+\PYG{n+nf}{myYen} \PYG{o+ow}{::} \PYG{k+kt}{Currency}
+\PYG{n+nf}{myYen} \PYG{o+ow}{=} \PYG{k+kt}{MkCurrency} \PYG{l+m+mi}{120} \PYG{l+m+mi}{0} \PYG{l+s}{\PYGZdq{}Yen\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Die Funktion nimmt eine Currency die entweder aus einem oder zwei Integer besteht und wandelt diese in ein Float um}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Beispiel currencyToFloat myEuro sollte 12.03 ausgeben}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Beispiel currencyToFloat myDollar sollte 14.60 ausgeben}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Beispiel currencyToFloat myYen sollte 120.0 ausgeben}
+\PYG{n+nf}{currencyToFloat} \PYG{o+ow}{::} \PYG{k+kt}{Currency} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float}
+\PYG{n+nf}{currencyToFloat} \PYG{n}{currency} \PYG{o+ow}{=} \PYG{n}{fromIntegral} \PYG{p}{(}\PYG{n}{getCoins} \PYG{n}{currency}\PYG{p}{)} \PYG{o}{+} \PYG{n}{fromIntegral} \PYG{p}{(}\PYG{n}{getCents} \PYG{n}{currency}\PYG{p}{)}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Die Funktion nimmt eine Currency und einen beliebigen Kurs und wandelt die Currency dementsprechend um.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Beispiel exchangeRate myEuro 2 sollte 6.015 ausgeben da dieser durch 2 geteilt wird.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Beispiel exchangeRate myDollar 2 sollte 7.3 ausgeben da dieser durch 2 geteilt wird.}
+\PYG{n+nf}{exchangeRate} \PYG{o+ow}{::} \PYG{k+kt}{Currency} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float}
+\PYG{n+nf}{exchangeRate} \PYG{n}{currency} \PYG{n}{rate} \PYG{o+ow}{=} \PYG{k+kr}{if} \PYG{n}{rate} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mf}{1.0} \PYG{k+kr}{then} \PYG{n}{currencyToFloat} \PYG{n}{currency}\PYG{o}{/}\PYG{n}{rate} \PYG{k+kr}{else} \PYG{n}{currencyToFloat} \PYG{n}{currency}\PYG{o}{*}\PYG{n}{rate}
+
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Die Funktion wandelt eine Währung in eine andere um. Es muss die aktuelle Währung eingegeben werden, die exchange rate und in welche Währung es umgewandelt werden soll. Als Ergebnis wird die neue Währung als Currency ausgegeben.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Beispiel exchangeCurrency myDollar 2 \PYGZdq{}Euro\PYGZdq{} gibt 7.30 Euro aus. Da in diesem Beispiel die exchange rate gleich 2 ist.}
+\PYG{n+nf}{exchangeCurrency} \PYG{o+ow}{::} \PYG{k+kt}{Currency} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{String} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Currency}
+\PYG{n+nf}{exchangeCurrency} \PYG{n}{currency} \PYG{n}{rate} \PYG{n}{newcurrency} \PYG{o+ow}{=} \PYG{k+kt}{MkCurrency} \PYG{p}{(}\PYG{n}{truncate}  \PYG{p}{(}\PYG{n}{exchangeRate} \PYG{n}{currency} \PYG{n}{rate}\PYG{p}{))} \PYG{p}{(}\PYG{n}{floatToDecimalPlace}\PYG{p}{(}\PYG{n}{exchangeRate} \PYG{n}{currency} \PYG{n}{rate}\PYG{p}{))} \PYG{n}{newcurrency} 
+
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Die Funktion gibt die letzten beiden Nachkommastellen eines Float als Integers zurück}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Beispiel: floatToDecimalPlace 12.45 sollte 45 ergeben }
+\PYG{n+nf}{floatToDecimalPlace} \PYG{o+ow}{::} \PYG{k+kt}{Float} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Integer}
+\PYG{n+nf}{floatToDecimalPlace} \PYG{n}{f} \PYG{o+ow}{=} \PYG{n}{round} \PYG{p}{((}\PYG{n}{f}\PYG{o}{\PYGZhy{}}\PYG{n}{fromIntegral} \PYG{p}{(}\PYG{n}{truncate} \PYG{n}{f}\PYG{p}{))}\PYG{o}{*}\PYG{l+m+mi}{10}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Die Funktion toEuro nimmt eine Currency rechnet sie in Euro um und gibt den Euro als Currency Wert ab.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Beispiele toEuro myDollar sollte 13,14 Euro ausgeben, da 14.60 / 0.9 = 13.14 ergibt}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}Beispiele toEuro myYen sollte 0.99 Euro ausgeben, da 120 * 0.0083 = 13.14 ergibt}
+\PYG{n+nf}{toEuro} \PYG{o+ow}{::} \PYG{k+kt}{Currency} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Currency}
+\PYG{n+nf}{toEuro} \PYG{n}{currency}
+    \PYG{o}{|} \PYG{n}{getCurrency} \PYG{n}{currency} \PYG{o}{==} \PYG{l+s}{\PYGZdq{}Dollar\PYGZdq{}} \PYG{o+ow}{=} \PYG{n}{exchangeCurrency} \PYG{n}{currency} \PYG{l+m+mf}{0.9} \PYG{l+s}{\PYGZdq{}Euro\PYGZdq{}}
+    \PYG{o}{|} \PYG{n}{getCurrency} \PYG{n}{currency} \PYG{o}{==} \PYG{l+s}{\PYGZdq{}Yen\PYGZdq{}} \PYG{o+ow}{=} \PYG{n}{exchangeCurrency} \PYG{n}{currency} \PYG{l+m+mf}{0.0083} \PYG{l+s}{\PYGZdq{}Euro\PYGZdq{}}
+    \PYG{o}{|} \PYG{n}{otherwise} \PYG{o+ow}{=} \PYG{n}{currency}
+
+\PYG{n+nf}{eqEuroDollar} \PYG{o+ow}{::} \PYG{k+kt}{Currency}
+\PYG{n+nf}{eqEuroDollar} \PYG{o+ow}{=} \PYG{k+kt}{MkCurrency} \PYG{l+m+mi}{13} \PYG{l+m+mi}{14} \PYG{l+s}{\PYGZdq{}Euro\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Die Funktion leitet Gleichheit von der Klasse Eq ab und }
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Überprüft ob die coins und cents von zwei}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}currencies in Euro umgerechnet übereinstimmen.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Beispiel: myDollar == eqEuroDollar sollte True ergeben}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Beispiel: myYen == myDollar sollte false ergeben.}
+
+\PYG{k+kr}{instance} \PYG{k+kt}{Eq} \PYG{k+kt}{Currency} \PYG{k+kr}{where}
+    \PYG{p}{(}\PYG{o}{==}\PYG{p}{)} \PYG{n}{currency1} \PYG{n}{currency2} \PYG{o+ow}{=} \PYG{p}{(}\PYG{n}{getCoins} \PYG{p}{(}\PYG{n}{toEuro} \PYG{n}{currency1}\PYG{p}{)} \PYG{o}{==} \PYG{n}{getCoins}\PYG{p}{(}\PYG{n}{toEuro} \PYG{n}{currency2}\PYG{p}{))} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{p}{(}\PYG{n}{getCents} \PYG{p}{(}\PYG{n}{toEuro} \PYG{n}{currency1}\PYG{p}{)} \PYG{o}{==} \PYG{n}{getCents}\PYG{p}{(}\PYG{n}{toEuro} \PYG{n}{currency2}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Die Funktion leitet größer/kleinergleich von der Klasse Ord ab und }
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Überprüft ob die coins von zwei}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} currencies in Euro umgerechnet kleiner gleich sind.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Beispiel: myDollar == eqEuroDollar sollte True ergeben}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Beispiel: myYen == myDollar sollte True ergeben.}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Beispiel: myDollar == myYen sollte False ergeben.}
+\PYG{k+kr}{instance} \PYG{k+kt}{Ord} \PYG{k+kt}{Currency} \PYG{k+kr}{where}
+     \PYG{p}{(}\PYG{o}{\PYGZlt{}=}\PYG{p}{)} \PYG{n}{currency1} \PYG{n}{currency2} \PYG{o+ow}{=} \PYG{n}{getCoins} \PYG{p}{(}\PYG{n}{toEuro} \PYG{n}{currency1}\PYG{p}{)} \PYG{o}{\PYGZlt{}=} \PYG{n}{getCoins}\PYG{p}{(}\PYG{n}{toEuro} \PYG{n}{currency2}\PYG{p}{)}
+\end{Verbatim}
