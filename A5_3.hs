@@ -3,7 +3,7 @@
 {-
 Aufgabe 5_3 a
 -}
-
+-- Es werden die Datentypen Point und Vektor erstellt.
 data Point = MkPoint {
     px :: Float,
     py :: Float
@@ -13,10 +13,12 @@ data Vector = MkVector {
     vx :: Float,
     vy :: Float
 }deriving (Eq, Ord, Show)
-
+-- Die Funktion addiert einen Vektor mit einem Punkit und gibt einen neuen Punkt aus
+--Beispiel translate x1 x2 ergibt (3,3)
 translate :: Point -> Vector -> Point
 translate (MkPoint p1 p2) (MkVector v1 v2) = MkPoint (p1+v1) (p2+v2)
-
+--Die Funktion multipliziert einen Punkt mit einem Float und skaliert den Punkt dementsprechend.
+--Beispiel scale 2 x1 ergibt (4,4) da 2+2 gleich 4 ist
 scale :: Float -> Point -> Point
 scale factor (MkPoint p1 p2) = MkPoint (factor * p1) (factor * p2)
 
@@ -25,9 +27,9 @@ Aufgabe 5_3 b
 -}
 
 class Polygon p where
-    area            :: Polygon p => p -> Float
-    translate_poly  :: Polygon p => p -> Vector -> p
-    scale_poly      :: Polygon p => p -> Float -> p
+    area           :: Polygon p => p -> Float
+    translate_poly :: Polygon p => p -> Vector -> p
+    scale_poly     :: Polygon p => p -> Float -> p
 
 data Triangle = MkTriangle {
     p1 :: Point,
@@ -52,6 +54,7 @@ Funktionen zum Berechnen von Dreiecken
 
 {-
 Die Funktion berechnet die Distanz zwischen zwei Punkten und gibt die Länge zurück.
+Beispiel lengthBetweenTwoPoints x1 x2 ergibt 6.0
 -}
 lengthBetweenTwoPoints :: Point -> Point -> Float
 lengthBetweenTwoPoints (MkPoint x1 y1) (MkPoint x2 y2) = 
@@ -59,6 +62,7 @@ lengthBetweenTwoPoints (MkPoint x1 y1) (MkPoint x2 y2) =
 
 {-
 Die Funktion gibt die längste Seite eines allgemeinen Dreiecks zurück.
+Beispiel findGround x1 x2 x3 ergibt 6.0.
 -}
 findGround :: Point -> Point -> Point -> Float
 findGround p1 p2 p3 
@@ -68,12 +72,14 @@ findGround p1 p2 p3
 
 {-
 Die Funktion berechnet die Summe der Kantenlängen und halbiert diese.
+Beispiel calculateHalfOfSumEdge x1 x2 x3 ergibt 7.4966145.
 -}
 calculateHalfOfSumEdge :: Point -> Point -> Point -> Float
 calculateHalfOfSumEdge p1 p2 p3 = 0.5 * (lengthBetweenTwoPoints p1 p2 + lengthBetweenTwoPoints p1 p3 +lengthBetweenTwoPoints p2 p3)
 
 {-
 Die Funktion berechnet die Höhe eine allgemeinen Dreiecks aus gehend von der Längsten Seite.
+Beispiel calculateHeight x1 x2 x3 ergibt 2.9999995
 -}
 calculateHeight :: Point -> Point -> Point -> Float
 calculateHeight p1 p2 p3 = (2/findGround p1 p2 p3)*sqrt(calculateHalfOfSumEdge p1 p2 p3*(calculateHalfOfSumEdge p1 p2 p3-lengthBetweenTwoPoints p1 p2)*(calculateHalfOfSumEdge p1 p2 p3-lengthBetweenTwoPoints p1 p3)*(calculateHalfOfSumEdge p1 p2 p3-lengthBetweenTwoPoints p2 p3))
