@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nf}{checkerFunc} \PYG{o+ow}{::} \PYG{k+kt}{Float} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Float} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Bool}
+\PYG{n+nf}{checkerFunc} \PYG{n}{n} \PYG{n}{m} \PYG{o+ow}{=} \PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZlt{}=} \PYG{n}{m}\PYG{p}{)} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{p}{(}\PYG{n}{n}\PYG{o}{*}\PYG{n}{m} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{42}\PYG{p}{)}    
+\end{Verbatim}
