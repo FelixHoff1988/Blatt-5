@@ -101,6 +101,7 @@ data Line = MkLine {
 Die Funktion gibt die beiden Punkte eines Dreiecks zurück, 
 die am weitestens auseinander liegen. 
 (analog zu findGround nur mit Punkten)
+Beispiel findLongestDistance x1 x2 x3 gibt aus MkLine {l1 = MkPoint {px = 2.0, py = 2.0}, l2 = MkPoint {px = 8.0, py = 2.0}}. Da die Linie zwischen den beiden entferntesten Punkten ausgegeben werden soll
 -}
 findLongestDistance :: Point -> Point -> Point -> Line
 findLongestDistance p1 p2 p3 
@@ -111,12 +112,14 @@ findLongestDistance p1 p2 p3
 {-
 Die Funktion gibt eine beliebige der beiden Diagonalen in einem
 allgemeinen Viereck zurück.
+Beispiel findDiagonal q ergibt MkLine {l1 = MkPoint {px = 2.0, py = 2.0}, l2 = MkPoint {px = 8.0, py = 2.0}}, da sie eine Diagonale des Quadrates als Linie zurückgeben soll.
 -}
 findDiagonal :: Quad -> Line
 findDiagonal quad = findLongestDistance (q1 quad) (q2 quad) (q3 quad)
 
 {-
 Die Funktion gibt die andere Diagonale zurück.
+Beispiel findOtherPoints q gibt MkLine {l1 = MkPoint {px = 7.0, py = 5.0}, l2 = MkPoint {px = 3.0, py = 1.0}} aus. Da diese Linie die zweite Diagonale des Quadrates q ist. und die erste schon in der Funktion findDiagonal ausgegeben wird.
 -}
 findOtherPoints :: Quad -> Line
 findOtherPoints quad 
@@ -126,18 +129,27 @@ findOtherPoints quad
 
 {-
 Die Funktion gibt den 1. Punkt einer Linie zurück.
+Beispiel breakDownLineToFirst line1 gibt MkPoint {px = 2.0, py = 2.0} also x1 aus.
 -}
 breakDownLineToFirst :: Line -> Point
 breakDownLineToFirst line = l1 line
 
 {-
 Die Funktion gibt den 2. Punkt einer Linie zurück.
+Beispiel breakDownLineToSecond line1 gibt MkPoint {px = 8.0, py = 2.0} also x2 aus.
 -}
 breakDownLineToSecond :: Line -> Point
 breakDownLineToSecond line = l2 line
 
 {-
-Wilde Implementierungen der Aufgabenstellungen.
+Die Funktionen area, translate_poly und scale_poly wurden implementiert.
+Implementierungen der Aufgabenstellungen.
+Beispiele area t1 gibt ca. 9 aus
+          translate_poly t1 v1 gibt MkTriangle {p1 = MkPoint {px = 3.0, py = 3.0}, p2 = MkPoint {px = 9.0, py = 3.0}, p3 = MkPoint {px = 8.0, py = 6.0}} als neues Dreieck aus.
+          scale_poly t1 2 gibt MkTriangle {p1 = MkPoint {px = 4.0, py = 4.0}, p2 = MkPoint {px = 16.0, py = 4.0}, p3 = MkPoint {px = 14.0, py = 10.0}} aus. Die Größe des Dreieck wurde verdoppelt
+          area q ist ca. 12
+          translate_poly q v1 gibt MkQuad {q1 = MkPoint {px = 3.0, py = 3.0}, q2 = MkPoint {px = 9.0, py = 3.0}, q3 = MkPoint {px = 8.0, py = 6.0}, q4 = MkPoint {px = 8.0, py = 6.0}} als neues Quadrat aus.
+          scale_poly q 2 gibt MkQuad {q1 = MkPoint {px = 4.0, py = 4.0}, q2 = MkPoint {px = 16.0, py = 4.0}, q3 = MkPoint {px = 14.0, py = 10.0}, q4 = MkPoint {px = 6.0, py = 2.0}} aus. Die größe des Quadrats wurde verdoppelt.
 -}
 instance Polygon Triangle where
     area (MkTriangle p1 p2 p3) = 0.5* findGround p1 p2 p3 * calculateHeight p1 p2 p3
