@@ -54,8 +54,10 @@ exchangeRate currency rate = if rate >= 1.0 then currencyToFloat currency/rate e
 exchangeCurrency :: Currency -> Float -> String -> Currency
 exchangeCurrency currency rate newcurrency = MkCurrency (truncate  (exchangeRate currency rate)) (floatToDecimalPlace(exchangeRate currency rate)) newcurrency 
 
+-- Die Funktion gibt die letzten beiden Nachkommastellen eines Float als Integers zurück
+-- Beispiel: floatToDecimalPlace 12.45 sollte 45 ergeben 
 floatToDecimalPlace :: Float -> Integer
-floatToDecimalPlace f = truncate ((f-fromIntegral (truncate f))*10^2)
+floatToDecimalPlace f = round ((f-fromIntegral (truncate f))*10^2)
 
 -- Die Funktion toEuro nimmt eine Currency rechnet sie in Euro um und gibt den Euro als Currency Wert ab.
 --Beispiele toEuro myDollar sollte 13,14 Euro ausgeben, da 14.60 / 0.9 = 13.14 ergibt
