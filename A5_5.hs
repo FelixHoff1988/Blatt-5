@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use newtype instead of data" #-}
 {-# HLINT ignore "Eta reduce" #-}
--- Erstellt wird der Datentyp Currency der aus  coins (Integer), cents(Integer) und currency (Sting) besteht.
+-- Erstellt wird der Datentyp Currency der aus  coins (Integer), cents(Integer) und currency (String) besteht.
 data Currency = MkCurrency {
     coins :: Integer,
     cents :: Integer,
@@ -67,4 +67,24 @@ toEuro currency
     | getCurrency currency == "Dollar" = exchangeCurrency currency 0.9 "Euro"
     | getCurrency currency == "Yen" = exchangeCurrency currency 0.0083 "Euro"
     | otherwise = currency
-    
+
+eqEuroDollar :: Currency
+eqEuroDollar = MkCurrency 13 14 "Euro"
+
+-- Die Funktion leitet Gleichheit von der Klasse Eq ab und 
+-- Überprüft ob die coins und cents von zwei
+--currencies in Euro umgerechnet übereinstimmen.
+-- Beispiel: myDollar == eqEuroDollar sollte True ergeben
+-- Beispiel: myYen == myDollar sollte false ergeben.
+
+instance Eq Currency where
+    (==) currency1 currency2 = (getCoins (toEuro currency1) == getCoins(toEuro currency2)) && (getCents (toEuro currency1) == getCents(toEuro currency2))
+
+-- Die Funktion leitet größer/kleinergleich von der Klasse Ord ab und 
+-- Überprüft ob die coins von zwei
+-- currencies in Euro umgerechnet kleiner gleich sind.
+-- Beispiel: myDollar == eqEuroDollar sollte True ergeben
+-- Beispiel: myYen == myDollar sollte True ergeben.
+-- Beispiel: myDollar == myYen sollte False ergeben.
+instance Ord Currency where
+     (<=) currency1 currency2 = getCoins (toEuro currency1) <= getCoins(toEuro currency2)
