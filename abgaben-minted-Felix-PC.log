@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2022.11.7)  23 NOV 2022 13:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2022.11.23)  23 NOV 2022 13:51
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -6,7 +6,7 @@ entering extended mode
 **"c:/Users/felix/OneDrive/Studium/Uni Münster/Informatik/1. Semester/Informatik 1/Übungszettel/Übungszettel LaTeX/Hausaufgaben/Blatt 5/abgaben-minted.tex"
 (c:/Users/felix/OneDrive/Studium/Uni Münster/Informatik/1. Semester/Informatik 1/Übungszettel/Übungszettel LaTeX/Hausaufgaben/Blatt 5/abgaben-minted.tex
 LaTeX2e <2022-06-01> patch level 5
-L3 programming layer <2022-10-26> (C:\Users\felix\AppData\Local\Programs\MiKTeX\tex/latex/base\fix-cm.sty
+L3 programming layer <2022-09-28> (C:\Users\felix\AppData\Local\Programs\MiKTeX\tex/latex/base\fix-cm.sty
 Package: fix-cm 2020/11/24 v1.1t fixes to LaTeX
  (C:\Users\felix\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1enc.def
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
@@ -159,7 +159,7 @@ File: caption-koma.sto 2020/09/21 v2.0b Adaption of the caption package to the K
 \c@subfigure=\count196
 \c@subtable=\count197
 ) (C:\Users\felix\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
-Package: babel 2022/10/23 3.82 The Babel package
+Package: babel 2022/10/04 3.81 The Babel package
 \babel@savecnt=\count198
 \U@D=\dimen151
 \l@unhyphenated=\language79
@@ -944,8 +944,8 @@ Package: array 2022/03/10 v2.5f Tabular extension package (FMi)
 \TX@delta=\dimen311
 \TX@cols=\count342
 \TX@ftn=\toks44
-) (C:/packages\tex/latex\minted\minted.sty
-Package: minted 2022/09/12 v2.7dev5 Yet another Pygments shim for LaTeX
+) (C:\Users\felix\AppData\Local\Programs\MiKTeX\tex/latex/minted\minted.sty
+Package: minted 2021/12/24 v2.6 Yet another Pygments shim for LaTeX
  (C:\Users\felix\AppData\Local\Programs\MiKTeX\tex/latex/fvextra\fvextra.sty
 Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
  (C:\Users\felix\AppData\Local\Programs\MiKTeX\tex/latex/fancyvrb\fancyvrb.sty
@@ -1050,7 +1050,7 @@ runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set > abg
 runsystem(del abgaben-minted.aex)...executed.
 
  (C:\Users\felix\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
-File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2022-09-28 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count370
 \l__pdf_internal_box=\box125
 ) (abgaben-minted.aux)
@@ -1301,10 +1301,10 @@ Package rerunfilecheck Info: File `abgaben-minted.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 38414 strings out of 475380
- 764914 string characters out of 2776772
- 1326028 words of memory out of 3000000
- 58989 multiletter control sequences out of 15000+600000
+ 38401 strings out of 475385
+ 764768 string characters out of 2776906
+ 1324293 words of memory out of 3000000
+ 58971 multiletter control sequences out of 15000+600000
  509266 words of font info for 176 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  113i,22n,109p,10803b,1189s stack positions out of 10000i,1000n,20000p,200000b,80000s
